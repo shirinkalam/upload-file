@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,3 +52,6 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('login/code',[LoginController::class,'confirmCode'])->name('auth.login.code');
     Route::get('two-factor/resent',[TwoFactorController::class,'resent'])->name('auth.two.factor.resent');
 });
+
+Route::get('file/create',[FileController::class,'create'])->name('file.create');
+Route::post('file',[FileController::class,'new'])->name('file.new');
