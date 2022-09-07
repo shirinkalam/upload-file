@@ -12,7 +12,7 @@
         <div>
             <div></div>
             <div>
-                <form action="{{route('file.new')}}" method="POST">
+                <form action="{{route('file.new')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <div>
