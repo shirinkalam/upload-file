@@ -49,7 +49,11 @@ return [
             'from'=>env('SMS_NUMBER')
         ],
         'uri' =>env('SMS_API_LINK')
-    ]
+    ],
+
+    'ffmpeg' =>[
+        'ffprobe_path' => env('FFPROBE_PATH'),
+    ],
 
 
 ];
