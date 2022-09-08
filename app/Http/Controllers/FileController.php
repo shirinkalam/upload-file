@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Services\Uploader\Uploader;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,13 @@ class FileController extends Controller
         $this->uploader= $uploader ;
     }
 
+    public function index()
+    {
+        $files = File::all();
+
+        return view('files.index',compact('files'));
+    }
+
     public function create()
     {
         return view('files.create');
@@ -21,11 +29,15 @@ class FileController extends Controller
 
     public function new(Request $request)
     {
-        $this->validateFile($request);
+        try {
+            $this->validateFile($request);
 
-        $this->uploader->upload();
+            $this->uploader->upload();
 
-        return redirect()->back()->withSuccess('File Has Uploaded Successfuly');
+            return redirect()->back()->withSuccess('File Has Uploaded Successfuly');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 
     public function validateFile($request)

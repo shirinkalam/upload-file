@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Uploader;
 
+use App\Exceptions\FileHasExistsException;
 use App\Models\File;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,8 @@ class Uploader
 
     public function upload()
     {
+        if($this->isFileExists()) throw new FileHasExistsException('File Has Already Uploaded');
+
         $this->putFileIntoStorage();
 
         $this->saveFileIntoDatabase();
@@ -70,5 +73,10 @@ class Uploader
             'video/mp4' => 'video',
             'application/zip' => 'archive',
         ][$this->file->getClientMimeType()];
+    }
+
+    private function isFileExists()
+    {
+         return $this->storageManager->isFileExists($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate());
     }
 }
