@@ -38,7 +38,7 @@
             @endif
 
             <td><a href="{{route('file.show',$file->id)}}">دانلود</a></td>
-            <td><a href="">حذف</a></td>
+            <td><a href="{{route('file.delete',$file->id)}}">حذف</a></td>
           </tr>
         @endforeach
       </tbody>

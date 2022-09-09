@@ -51,4 +51,11 @@ class FileController extends Controller
     {
         return $file->download();
     }
+
+    public function delete(File $file)
+    {
+        $file->delete();
+
+        return back();
+    }
 }
