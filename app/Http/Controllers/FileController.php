@@ -46,4 +46,9 @@ class FileController extends Controller
             'file'=>['required','file','mimetypes:image/jpeg,video/mp4,application/zip'],
         ]);
     }
+
+    public function show(File $file)
+    {
+        return $file->download();
+    }
 }

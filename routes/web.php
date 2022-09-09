@@ -56,3 +56,4 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
 Route::get('file/create',[FileController::class,'create'])->name('file.create');
 Route::post('file',[FileController::class,'new'])->name('file.new');
 Route::get('files',[FileController::class,'index'])->name('file.index');
+Route::get('file/{file}',[FileController::class,'show'])->name('file.show');

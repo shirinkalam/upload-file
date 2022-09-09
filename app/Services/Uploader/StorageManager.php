@@ -37,4 +37,9 @@ class StorageManager
     {
         return $type . DIRECTORY_SEPARATOR . $name ;
     }
+
+    public function getFile(string $name,string $type,bool $isPrivate)
+    {
+        return $this->disk($isPrivate)->download($this->directoryPrefix($name,$type));
+    }
 }
